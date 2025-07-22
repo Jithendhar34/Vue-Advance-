@@ -2,39 +2,47 @@
     <div>
         <app-header/>
         <div class="container">
-            <UserProfile
-                :alsoKnownAs="data.name"
-                :userLastname="data.lastname"
-                :userAge="data.age"
-                :userParents="data.parents"
-                @update-lastname="data.lastname = $event"
-                @say-hello="alertHello"
-            />
-            <button @click="updateName">Update name</button>
+            <Cars/>
+            <hr/>
+            <CarBrands>
+                <div>Content at the top</div>
+                <template v-slot:brands>
+                    <ul>
+                        <li v-for="(brand,index) in brands" :key="index">
+                            {{ brand }}
+                        </li>
+                    </ul>
+                </template>
+                <template v-slot:other>
+                    <div>Some other content</div>
+                </template>
+                <strong>Default slot</strong>
+            </CarBrands>
         </div>
     </div>
 </template>
 
 <script setup>
-    import UserProfile from './components/User/Profile.vue';
-    import { reactive } from 'vue';
-    const data = reactive({
-        name:'Rocket',
-        lastname:'Jones',
-        age:28,
-        parents:{
-            father:'Mario',
-            mother:'Martha'
-        }
+    import { reactive, provide } from 'vue';
+    import Cars from './components/Cars/index.vue';
+    import CarBrands from './components/Cars/brands.vue';
+
+    const brands = reactive(['Mazda','Honda','Renault'])
+    const cars = reactive([
+        {model:'F9',brand:'Ferrari'},
+        {model:'911',brand:'Porsche'},
+        {model:'Tipo',brand:'Fiat'}
+    ])
+    
+
+    const updateCar = () => {
+        cars[0].model = 'Ford'
+    }
+
+    provide('cars',{
+        cars,
+        updateCar
     })
-
-    const updateName = () => {
-        data.name = "K J"
-    }
-
-    const alertHello = () => {
-        alert('Hello !!')
-    }
 
 </script>
 
@@ -49,5 +57,4 @@
         box-sizing: border-box;
         padding: 20px;
     }
-
 </style>

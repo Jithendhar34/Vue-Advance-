@@ -16,16 +16,31 @@
         <hr/>
         <button @click="emit('update-lastname','Michaelson')">Change from child</button>
         <button @click="sayHello">Say hello</button>
+        <button @click="updateAge(40)">Update age</button>
     </div>
 </template>
 
 <script setup>
     const emit = defineEmits(['update-lastname','say-hello']);
     const props = defineProps({
-        alsoKnownAs:String,
-        userLastname:String,
-        userAge:Number,
-        userParents:Object
+        alsoKnownAs:{
+            type:String,
+            required:true,
+            default:'N/A'
+        },
+        userLastname:{
+            type:String,
+            validator(value){
+                if(value === 'Jones'){
+                    return true
+                } else {
+                    return false
+                }
+            }
+        },
+        userAge:[Number,String],
+        userParents:Object,
+        updateAge:Function
     });
 
     const sayHello = () => {
