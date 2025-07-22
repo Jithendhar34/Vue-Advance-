@@ -4,7 +4,11 @@
         <div class="container">
             <UserProfile
                 :alsoKnownAs="data.name"
-                lastname="Jones"
+                :userLastname="data.lastname"
+                :userAge="data.age"
+                :userParents="data.parents"
+                @update-lastname="data.lastname = $event"
+                @say-hello="alertHello"
             />
             <button @click="updateName">Update name</button>
         </div>
@@ -15,11 +19,21 @@
     import UserProfile from './components/User/Profile.vue';
     import { reactive } from 'vue';
     const data = reactive({
-        name:'Rocket'
+        name:'Rocket',
+        lastname:'Jones',
+        age:28,
+        parents:{
+            father:'Mario',
+            mother:'Martha'
+        }
     })
 
     const updateName = () => {
-        data.name = "Golden child"
+        data.name = "K J"
+    }
+
+    const alertHello = () => {
+        alert('Hello !!')
     }
 
 </script>

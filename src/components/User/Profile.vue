@@ -3,14 +3,35 @@
         <h3>User information</h3>
         <ul>
             <li><span>Name:</span> {{name}}</li>
-            <li><span>Lastname:</span> {{lastname}}</li>
+            <li><span>Lastname:</span> {{userLastname}}</li>
             <li><span>Known as:</span> {{alsoKnownAs}}</li>
+            <li><span>Age:</span> {{userAge}}</li>
+            <h3>Parents</h3>
         </ul>
+        <ul>
+            <li v-for="(value,key,index) in userParents" :key="index">
+                <span>{{ key }}: </span> {{ value }}
+            </li>
+        </ul>
+        <hr/>
+        <button @click="emit('update-lastname','Michaelson')">Change from child</button>
+        <button @click="sayHello">Say hello</button>
     </div>
 </template>
 
 <script setup>
-    const props = defineProps(['alsoKnownAs','lastname']);
+    const emit = defineEmits(['update-lastname','say-hello']);
+    const props = defineProps({
+        alsoKnownAs:String,
+        userLastname:String,
+        userAge:Number,
+        userParents:Object
+    });
+
+    const sayHello = () => {
+        emit('say-hello')
+    }
+
     const name = 'Steve'
 </script>
 
