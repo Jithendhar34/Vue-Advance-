@@ -46,6 +46,9 @@
     const sayHello = () => {
         emit('say-hello')
     }
+    ///comments
+
+    //comment
 
     const name = 'Steve'
 </script>
@@ -61,3 +64,5 @@
         padding: 10px;
     }
 </style>
+
+
