@@ -6,13 +6,16 @@
             <button @click="activeComp = Steve">Steve</button>
             <!-- <Mike v-if="activeComp === Mike"/>
             <Steve v-if="activeComp === Steve"/> -->
-            <component :is="activeComp"></component>
+            <keep-alive>
+               <component :is="activeComp"></component>
+            </keep-alive>
+          
         </div>
     </div>
 </template>
 
 <script setup>
-    import Mike from  './components/Players/Mike.vue'
+    import Mike from  './components/Players/mike.vue'
     import Steve from './components/Players/steve.vue';
     import { shallowRef } from 'vue';
 
