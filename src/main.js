@@ -20,7 +20,8 @@ app.directive('awesome',{
         el.style.fontSize = binding.modifiers.big ? '20px':'10px'
         el.innerHTML = binding.value
     }
-})
+}}
+//commit new file 
 
 
 app.component('app-header',Header)
