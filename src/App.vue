@@ -9,6 +9,7 @@
 
 <script setup>
     import Directives from '@/components/Directives/index.vue'
+//comment
 </script>
 
 <style>
